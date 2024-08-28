@@ -1,0 +1,124 @@
+/* src/Login.css */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    /* Prevent vertical scrolling */
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-sizing: border-box;
+    /* Ensure padding is included in height calculation */
+    overflow: auto;
+
+    margin-top: -100px;
+    /* Allow content to scroll if it overflows */
+}
+
+.login h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+.login form {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    animation: scaleUp 0.5s ease-out;
+    box-sizing: border-box;
+    /* Ensure padding is included in width calculation */
+}
+
+.login div {
+    margin-bottom: 15px;
+}
+
+.login label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.login input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.login input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.login button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
+    animation: buttonFadeIn 0.5s ease-out;
+}
+
+.login button:hover {
+    background-color: #0056b3;
+}
+
+/* Animations */
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes buttonFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

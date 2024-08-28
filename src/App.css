@@ -1,0 +1,111 @@
+/* src/App.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  height: 60px;
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+footer {
+  height: 25px;
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.sidebar {
+  width: 210px;
+  height: calc(100vh - 85px);
+  /* Adjust based on header and footer height */
+  background-color: #f4f4f4;
+  /* Different color than header */
+  position: fixed;
+  top: 60px;
+  /* Header height */
+  left: 0;
+  overflow-y: auto;
+}
+
+main {
+  margin-left: 210px;
+  /* Sidebar width */
+  padding: 20px;
+  margin-top: 60px;
+  /* Header height */
+  margin-bottom: 25px;
+  /* Footer height */
+}
+
+/* src/App.css */
+
+.content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: calc(100vh - 85px);
+  /* Full height minus header and footer */
+}
+
+.content h2 {
+  margin-top: 0;
+}
+
+.content p {
+  line-height: 1.6;
+}
+
+main {
+  margin-left: 210px;
+  /* Margin to accommodate the sidebar width */
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: calc(100vh - 85px);
+  /* Full height minus header and footer */
+}
+
+/* src/App.css */
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.login,
+.logout {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

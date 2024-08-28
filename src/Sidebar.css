@@ -1,0 +1,33 @@
+/* src/Sidebar.css */
+
+.sidebar {
+    width: 210px;
+    /* Fixed width for the sidebar */
+    height: 100vh;
+    /* Full height of the viewport */
+    background-color: #333;
+    /* Sidebar background color */
+    color: #fff;
+    /* Text color */
+    position: fixed;
+    /* Fixed position */
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    /* Space for the header */
+}
+
+.sidebar a {
+    color: #fff;
+    /* Link color */
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #444;
+    /* Hover effect */
+}
