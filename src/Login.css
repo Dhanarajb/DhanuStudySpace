@@ -10,19 +10,30 @@ body {
 
 .login {
     display: flex;
+    /* Use Flexbox for layout */
     flex-direction: column;
+    /* Arrange children elements in a column */
     align-items: center;
+    /* Center children horizontally */
     justify-content: center;
+    /* Center children vertically */
     height: 100vh;
-    background-color: #f4f4f4;
+    /* Full viewport height */
+    background-image: url('https://j.gifs.com/YE6OJA.gif');
+    /* Background GIF */
     padding: 20px;
+    /* Inner padding */
     box-sizing: border-box;
-    /* Ensure padding is included in height calculation */
+    /* Include padding in width/height */
     overflow: auto;
-
+    /* Allow scrolling if content overflows */
     margin-top: -100px;
-    /* Allow content to scroll if it overflows */
+    /* Negative margin, moves the container up */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
 
 .login h2 {
     margin-bottom: 20px;

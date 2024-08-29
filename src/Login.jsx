@@ -1,5 +1,5 @@
 // src/Login.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'; // Import the CSS file for styling
 
@@ -7,6 +7,17 @@ function Login({ onLogin }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [voices, setVoices] = useState([]);
+
+    useEffect(() => {
+        const loadVoices = () => {
+            const availableVoices = window.speechSynthesis.getVoices();
+            setVoices(availableVoices);
+        };
+
+        loadVoices();
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,9 +25,22 @@ function Login({ onLogin }) {
         if (username === 'dhanu' && password === 'dhanu') {
             onLogin();
             navigate('/');
+            // Add sound notification
+            const message = `Hi Dhanaraj, you logged in`;
+            speakMessage(message);
         } else {
             alert('Invalid credentials');
         }
+    };
+
+    const speakMessage = (message) => {
+        const utterance = new SpeechSynthesisUtterance(message);
+        const femaleVoice = voices.find(voice => voice.name.includes('Female') || voice.name.includes('Female')); // Modify the condition based on available voices
+        if (femaleVoice) {
+            utterance.voice = femaleVoice;
+        }
+        utterance.rate = 0.8; // Slows down the speech (default is 1)
+        window.speechSynthesis.speak(utterance);
     };
 
     return (

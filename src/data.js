@@ -8,149 +8,77 @@ export const problems = {
   arrays: [
     {
       title: "Find Maximum in Array",
+      videoLink: "https://www.youtube.com/embed/330uDe8gCFg",
       solutions: {
         bruteForce: {
           code: `
 /**
- * Finds the maximum value in an array using a brute-force approach.
+ * Finds the highest value in an array using a straightforward method.
  * 
  * @param {number[]} arr - The array of numbers.
- * @returns {number} The maximum value in the array.
+ * @returns {number} The highest value in the array.
  */
 function findMaxBruteForce(arr) {
-  // Assume the first element is the maximum
   let max = arr[0];
 
-  // Iterate through the rest of the array
   for (let i = 1; i < arr.length; i++) {
-    // Update the maximum if a larger value is found
     if (arr[i] > max) {
       max = arr[i];
     }
   }
 
-  // Return the maximum value found
   return max;
 }
           `,
           explanation: `
-The brute-force approach involves iterating through each element of the array and keeping track of the maximum value found. This method is simple but has a time complexity of O(n), where n is the number of elements in the array. This means the time it takes to find the maximum grows linearly with the number of elements.
+This method finds the highest value by checking each element:
+1. Start by assuming the first element is the highest.
+2. Compare each subsequent element to the current highest.
+3. Update the highest value if a larger one is found.
+4. Return the highest value found.
+
+This approach is efficient for smaller arrays but might be less optimal for larger ones.
           `,
         },
         optimal: {
           code: `
 /**
- * Finds the maximum value in an array using the built-in Math.max function.
+ * Finds the highest value in an array using a more optimized method.
  * 
  * @param {number[]} arr - The array of numbers.
- * @returns {number} The maximum value in the array.
+ * @returns {number} The highest value in the array.
  */
 function findMaxOptimal(arr) {
-  // Use the built-in Math.max function to find the maximum value
   return Math.max(...arr);
 }
           `,
           explanation: `
-The optimal approach leverages JavaScript's built-in Math.max function, which is highly optimized. This method is more concise and uses built-in methods for efficiency, with a time complexity of O(n) similar to the brute-force approach but often performs faster in practice due to optimizations in the underlying implementation.
+This method uses JavaScript's built-in \`Math.max\` function to find the highest value:
+1. Spread the array into individual arguments for \`Math.max\`.
+2. Return the maximum value.
+
+This approach is concise and leverages built-in functionality for efficiency.
           `,
         },
         pattern: {
           code: `
 /**
- * Finds the maximum value in an array using the reduce method.
+ * Finds the highest value in an array using a pattern-based method.
  * 
  * @param {number[]} arr - The array of numbers.
- * @returns {number} The maximum value in the array.
+ * @returns {number} The highest value in the array.
  */
 function findMaxPattern(arr) {
-  // Use the reduce method to find the maximum value
-  return arr.reduce((max, num) => num > max ? num : max, arr[0]);
+  return arr.reduce((max, num) => (num > max ? num : max), arr[0]);
 }
           `,
           explanation: `
-The pattern-based approach uses the reduce method to iterate through the array and compare each element with the current maximum. This method is functional and elegant, with a time complexity of O(n). It is useful for understanding functional programming concepts and is often used in modern JavaScript.
-          `,
-        },
-      },
-    },
-    {
-      title: "Rotate Array",
-      solutions: {
-        bruteForce: {
-          code: `
-/**
- * Rotates the array by k positions using a brute-force approach.
- * 
- * @param {number[]} arr - The array of numbers.
- * @param {number} k - The number of positions to rotate.
- * @returns {number[]} The rotated array.
- */
-function rotateArrayBruteForce(arr, k) {
-  const n = arr.length;
-  k = k % n; // Handle cases where k > n
-  let temp = arr.slice(0, n - k); // Store the part of the array that will be moved
-  for (let i = 0; i < k; i++) {
-    arr[i] = arr[n - k + i]; // Move the last k elements to the beginning
-  }
-  for (let i = 0; i < n - k; i++) {
-    arr[k + i] = temp[i]; // Move the remaining elements to their new positions
-  }
-  return arr;
-}
-          `,
-          explanation: `
-The brute-force approach involves rotating the array by manually moving elements around. This method handles rotations by slicing and rearranging elements but can be less efficient for large arrays due to multiple operations. It has a time complexity of O(n), where n is the number of elements in the array.
-          `,
-        },
-        optimal: {
-          code: `
-/**
- * Rotates the array by k positions using a more efficient approach.
- * 
- * @param {number[]} arr - The array of numbers.
- * @param {number} k - The number of positions to rotate.
- * @returns {number[]} The rotated array.
- */
-function rotateArrayOptimal(arr, k) {
-  const n = arr.length;
-  k = k % n; // Handle cases where k > n
-  return [...arr.slice(-k), ...arr.slice(0, -k)];
-}
-          `,
-          explanation: `
-The optimal approach uses slicing and concatenation to rotate the array. This method is concise and leverages JavaScript's array manipulation capabilities, with a time complexity of O(n). It is efficient and takes advantage of built-in methods for simplicity.
-          `,
-        },
-        pattern: {
-          code: `
-/**
- * Rotates the array by k positions using the Greatest Common Divisor (GCD) method.
- * 
- * @param {number[]} arr - The array of numbers.
- * @param {number} k - The number of positions to rotate.
- * @returns {number[]} The rotated array.
- */
-function rotateArrayPattern(arr, k) {
-  const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
-  const n = arr.length;
-  k = k % n;
-  const d = gcd(n, k); // Number of elements to rotate in each cycle
-  for (let i = 0; i < d; i++) {
-    let temp = arr[i];
-    let j = i;
-    while (true) {
-      let l = (j + k) % n;
-      if (l === i) break;
-      arr[j] = arr[l];
-      j = l;
-    }
-    arr[j] = temp;
-  }
-  return arr;
-}
-          `,
-          explanation: `
-The pattern-based approach utilizes the Greatest Common Divisor (GCD) to determine the number of positions to shift elements. This method minimizes the number of moves and is efficient for large arrays, with a time complexity of O(n). It is more advanced and helps in understanding the concept of cycle rotation.
+This method uses the \`reduce\` function to find the highest value:
+1. Initialize the \`max\` value with the first element of the array.
+2. Iterate through the array and update \`max\` if a larger value is found.
+3. Return the largest value found.
+
+This approach is functional and elegant, leveraging array methods.
           `,
         },
       },
@@ -159,66 +87,42 @@ The pattern-based approach utilizes the Greatest Common Divisor (GCD) to determi
   strings: [
     {
       title: "Reverse String",
+      videoLink: "https://www.youtube.com/embed/your_video_id", // Replace with the actual video link
       solutions: {
         bruteForce: {
-          code: `
-/**
- * Reverses a string using a brute-force approach.
- * 
- * @param {string} str - The string to be reversed.
- * @returns {string} The reversed string.
- */
-function reverseStringBruteForce(str) {
-  let reversed = '';
-  // Iterate from the end to the beginning
-  for (let i = str.length - 1; i >= 0; i--) {
-    reversed += str[i]; // Build the reversed string
-  }
-  return reversed;
+          code: `function reverseStringBruteForce(str) {
+let reversed = '';
+for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
 }
-          `,
-          explanation: `
-The brute-force approach builds the reversed string by concatenating characters from the end to the beginning. This method is straightforward but less efficient due to repeated string concatenation operations, resulting in a time complexity of O(n^2), where n is the length of the string.
-          `,
+return reversed;
+}`,
+          explanation: `The brute force approach involves iterating through the string from the end to the beginning and appending each character to a new string. This results in the reversed string.`,
         },
         optimal: {
-          code: `
-/**
- * Reverses a string using built-in methods.
- * 
- * @param {string} str - The string to be reversed.
- * @returns {string} The reversed string.
- */
-function reverseStringOptimal(str) {
-  return str.split('').reverse().join(''); // Split, reverse, and join the string
-}
-          `,
-          explanation: `
-The optimal approach uses JavaScript's built-in methods: split, reverse, and join. This method is more efficient and concise, with a time complexity of O(n). It leverages native methods for simplicity and performance.
-          `,
+          code: `function reverseStringOptimal(str) {
+return str.split('').reverse().join('');
+}`,
+          explanation: `The optimal approach uses JavaScript's built-in methods to split the string into an array of characters, reverse the array, and then join the characters back into a string. This approach is concise and leverages built-in functionality for efficiency.`,
         },
         pattern: {
-          code: `
-/**
- * Reverses a string using a two-pointer technique.
- * 
- * @param {string} str - The string to be reversed.
- * @returns {string} The reversed string.
- */
-function reverseStringPattern(str) {
-  const arr = Array.from(str); // Convert string to array of characters
-  for (let i = 0; i < Math.floor(arr.length / 2); i++) {
-    // Swap characters from both ends
-    [arr[i], arr[arr.length - 1 - i]] = [arr[arr.length - 1 - i], arr[i]];
-  }
-  return arr.join(''); // Convert array back to string
+          code: `function reverseStringPatternBased(str) {
+let start = 0;
+let end = str.length - 1;
+let charArray = str.split('');
+
+while (start < end) {
+    [charArray[start], charArray[end]] = [charArray[end], charArray[start]];
+    start++;
+    end--;
 }
-          `,
-          explanation: `
-The pattern-based approach uses a two-pointer technique to swap characters in place. This method has a time complexity of O(n) and a space complexity of O(1), as it does not use extra space for string reversal. It is efficient and demonstrates in-place operations.
-          `,
+
+return charArray.join('');
+}`,
+          explanation: `The pattern-based approach involves using a two-pointer technique where you swap characters from the start and end of the string moving towards the center. This approach is efficient and avoids additional space complexity compared to the brute force method.`,
         },
       },
     },
+    // Add other string problems here if needed
   ],
 };
